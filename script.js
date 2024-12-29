@@ -15,6 +15,7 @@ const winpattern=[
     [2,4,6]
 ];
 let count=0;
+let winnerFound=false;
 boxes.forEach((box)=>{
     box.addEventListener("click",()=>{
         if(turno){
@@ -29,7 +30,7 @@ boxes.forEach((box)=>{
         box.disabled = true;
         count++;
         checkWin();
-        if(count===9){
+        if(!winnerFound && count===9){
             msg.innerText = "Match Draw !!";
             playagain.innerText = "Play Again";
             msgcontainer.classList.remove("hide");
@@ -40,6 +41,7 @@ const showWin = (winner) =>{
     msg.innerText = `Congratulations, Winner is ${winner} !!`;
     playagain.innerText = "Play Again";
     msgcontainer.classList.remove("hide");
+    winnerFound=true;
     boxes.forEach((box)=>{
         box.disabled = true;
     });
